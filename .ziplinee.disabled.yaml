@@ -1,0 +1,97 @@
+builder:
+  track: dev
+
+labels:
+  app-group: ziplinee-ci-extensions
+  team: ziplinee-team
+  language: golang
+
+version:
+  semver:
+    major: 0
+    minor: 1
+
+stages:
+  build:
+    image: golang:1.17-alpine
+    env:
+      CGO_ENABLED: 0
+      GOOS: linux
+    commands:
+    - go test ./...
+    - go build -a -installsuffix cgo -ldflags "-X main.appgroup=${ZIPLINEE_LABEL_APP_GROUP} -X main.app=${ZIPLINEE_GIT_NAME} -X main.version=${ZIPLINEE_BUILD_VERSION} -X main.revision=${ZIPLINEE_GIT_REVISION} -X main.branch=${ZIPLINEE_GIT_BRANCH} -X main.buildDate=${ZIPLINEE_BUILD_DATETIME}" -o ./publish/${ZIPLINEE_GIT_NAME} .
+
+  bake:
+    image: extensionci/docker:dev
+    action: build
+    container: github-status
+    repositories:
+    - extensionci
+    path: ./publish
+    copy:
+    - /etc/ssl/certs/ca-certificates.crt
+
+  check-container:
+    parallelStages:
+      check-efficiency:
+        image: extensionci/docker:dev
+        action: dive
+        container: github-status
+        repositories:
+        - extensionci
+
+      vulnerability-scan:
+        image: extensionci/docker:dev
+        action: trivy
+        container: github-status
+        repositories:
+        - extensionci
+
+  push-to-docker-hub:
+    image: extensionci/docker:dev
+    action: push
+    container: github-status
+    repositories:
+    - extensionci
+
+releases:
+  dev:
+    triggers:
+    - pipeline:
+        name: self
+        branch: .+
+    stages:
+      tag-container-image:
+        image: extensionci/docker:dev
+        action: tag
+        container: github-status
+        repositories:
+        - extensionci
+        tags:
+        - dev
+
+  beta:
+    stages:
+      tag-container-image:
+        image: extensionci/docker:dev
+        action: tag
+        container: github-status
+        repositories:
+        - extensionci
+        tags:
+        - beta
+
+  stable:
+    stages:
+      tag-container-image:
+        image: extensionci/docker:dev
+        action: tag
+        container: github-status
+        repositories:
+        - extensionci
+        tags:
+        - stable
+        - latest
+
+
+
