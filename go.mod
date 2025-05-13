@@ -9,7 +9,7 @@ require (
 	github.com/rs/zerolog v1.33.0
 	github.com/sethgrid/pester v1.2.0
 	github.com/stretchr/testify v1.9.0
-	github.com/ziplineeci/ziplinee-foundation v0.0.1
+	github.com/ziplineeci/ziplinee-foundation v0.0.2
 )
 
 require (
