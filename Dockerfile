@@ -16,7 +16,7 @@ COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificat
 COPY --from=base //ziplinee-extension-github-status //ziplinee-extension-github-status
 
 # Env vars
-ENV ESTAFETTE_LOG_FORMAT="console"
+ENV ZIPLINEE_LOG_FORMAT="console"
 
 
 ENTRYPOINT ["/ziplinee-extension-github-status"]

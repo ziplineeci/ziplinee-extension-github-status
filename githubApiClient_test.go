@@ -12,7 +12,7 @@ func TestSetBuildStatus(t *testing.T) {
 
 		// act
 		githubAPIClient := newGithubAPIClient()
-		err := githubAPIClient.SetBuildStatus("v1.1c85af3bbfbe393055c74a22b638b4a52238d05d", "estafette/estafette-extension-bitbucket-status", "a66df8a71b566e712cd9e4096469ae903d05ad12", "succeeded")
+		err := githubAPIClient.SetBuildStatus("v1.1c85af3bbfbe393055c74a22b638b4a52238d05d", "ziplineeci/ziplinee-extension-bitbucket-status", "a66df8a71b566e712cd9e4096469ae903d05ad12", "succeeded")
 
 		assert.Nil(t, err)
 	})
@@ -21,7 +21,7 @@ func TestSetBuildStatus(t *testing.T) {
 
 	// 	// act
 	// 	githubAPIClient := newGithubAPIClient()
-	// 	err := githubAPIClient.SetBuildStatus("v1.1c85af3bbfbe393055c74a22b638b4a52238d05d", "estafette/estafette-extension-bitbucket-status", "a66df8a71b566e712cd9e4096469ae903d05ad12", "failed")
+	// 	err := githubAPIClient.SetBuildStatus("v1.1c85af3bbfbe393055c74a22b638b4a52238d05d", "ziplineeci/ziplinee-extension-bitbucket-status", "a66df8a71b566e712cd9e4096469ae903d05ad12", "failed")
 
 	// 	assert.Nil(t, err)
 	// })
@@ -30,7 +30,7 @@ func TestSetBuildStatus(t *testing.T) {
 
 	// 	// act
 	// 	githubAPIClient := newGithubAPIClient()
-	// 	err := githubAPIClient.SetBuildStatus("v1.1c85af3bbfbe393055c74a22b638b4a52238d05d", "estafette/estafette-extension-bitbucket-status", "a66df8a71b566e712cd9e4096469ae903d05ad12", "pending")
+	// 	err := githubAPIClient.SetBuildStatus("v1.1c85af3bbfbe393055c74a22b638b4a52238d05d", "ziplineeci/ziplinee-extension-bitbucket-status", "a66df8a71b566e712cd9e4096469ae903d05ad12", "pending")
 
 	// 	assert.Nil(t, err)
 	// })

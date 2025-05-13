@@ -26,7 +26,7 @@ var (
 	gitRepoSource       = kingpin.Flag("git-repo-source", "The source of the git repository, github.com in this case.").Envar("ZIPLINEE_GIT_SOURCE").Required().String()
 	gitRepoFullname     = kingpin.Flag("git-repo-fullname", "The owner and repo name of the Github repository.").Envar("ZIPLINEE_GIT_FULLNAME").Required().String()
 	gitRevision         = kingpin.Flag("git-revision", "The hash of the revision to set build status for.").Envar("ZIPLINEE_GIT_REVISION").Required().String()
-	ziplineeBuildStatus = kingpin.Flag("ziplinee-build-status", "The current build status of the Estafette pipeline.").Envar("ZIPLINEE_BUILD_STATUS").Required().String()
+	ziplineeBuildStatus = kingpin.Flag("ziplinee-build-status", "The current build status of the Ziplinee pipeline.").Envar("ZIPLINEE_BUILD_STATUS").Required().String()
 	statusOverride      = kingpin.Flag("status-override", "Allow status property in manifest to override the actual build status.").Envar("ZIPLINEE_EXTENSION_STATUS").String()
 	ciBaseURL           = kingpin.Flag("ziplinee-ci-server-base-url", "The base url of the ci server.").Envar("ZIPLINEE_CI_SERVER_BASE_URL").Required().String()
 	ziplineeBuildID     = kingpin.Flag("ziplinee-build-id", "The build id of this particular build.").Envar("ZIPLINEE_BUILD_ID").Required().String()
